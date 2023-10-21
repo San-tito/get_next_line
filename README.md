@@ -5,7 +5,7 @@ The Get Next Line project aims to create a function that reads a line from a fil
 - Compilation Instructions
 
     ```bash
-cc -Wall -Werror -Wextra -D BUFFER_SIZE=42 get_next_line*.c -o gnl
+    cc -Wall -Werror -Wextra -D BUFFER_SIZE=42 get_next_line*.c -o gnl
     ```
 
 # License
