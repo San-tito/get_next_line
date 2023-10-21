@@ -11,4 +11,4 @@ The Get Next Line project aims to create a function that reads a line from a fil
 # License
 
 
-The MIT License (MIT) 2023 - [Santito](https://github.com/San-tito/). Please have a look at the [LICENSE.md](LICENSE.md) for more details.
+The MIT License (MIT) 2023 - [Santito](https://github.com/San-tito/). Please have a look at the [LICENSE](LICENSE) for more details.
