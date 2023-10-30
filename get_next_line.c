@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:26:06 by sguzman           #+#    #+#             */
-/*   Updated: 2023/10/30 19:29:45 by sguzman          ###   ########.fr       */
+/*   Updated: 2023/10/30 21:40:00 by santito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,21 @@ int	line_found(t_list *lst)
 
 void	read_and_append(int fd, t_list **lst)
 {
-	char	buffer[BUFFER_SIZE + 1];
+	char	*buffer;
 	int		bytes_read;
 
 	bytes_read = 1;
-	while (!line_found(*lst) && bytes_read)
+	while (!line_found(*lst))
 	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);	
+		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if (!buffer)
+			return ;
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (!bytes_read)
+		{
+			free(buffer);
+			return ;
+		}
 		ft_lstadd(lst, buffer, bytes_read);
 	}
 }
@@ -48,15 +56,13 @@ char	*get_next_line(int fd)
 	char			*line;
 
 	line = NULL;
-
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, line, 0) < 0)
 		return (NULL);
 	// PASO 1: leer y crear la lista y agregar cada lectura el buffer al final de la lst
 	read_and_append(fd, &lst);
-
-	while(lst)
+	while (lst)
 	{
-		printf("%s",(*lst).content);
+		printf("%s", (*lst).content);
 		lst = (*lst).next;
 	}
 	// PASO 2: recorrer lst y crear line hasta el \n
@@ -69,7 +75,7 @@ int	main(int argc, char **argv)
 	int	fd;
 
 	fd = open(*(argv + argc - 1), O_RDONLY);
-	printf("get_next_line -> %s", get_next_line(fd));
+	get_next_line(fd);
 	close(fd);
 	return (0);
 }
