@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:26:06 by sguzman           #+#    #+#             */
-/*   Updated: 2023/11/01 18:35:31 by sguzman          ###   ########.fr       */
+/*   Updated: 2023/11/02 20:26:03 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	read_and_create(int fd, t_list **lst)
 			free(buffer);
 			return ;
 		}
+		buffer[bytes_read] = '\0';
 		add_node(lst, buffer);
 	}
 }
@@ -43,6 +44,8 @@ void	get_line(t_list *lst, char **line)
 	j = 0;
 	aux = lst;
 	len = length_until_newline(lst);
+	if (!len)
+		return ;
 	*line = malloc(sizeof(char) * (len + 1));
 	if (!*line)
 		return ;
@@ -53,47 +56,51 @@ void	get_line(t_list *lst, char **line)
 		j = 0;
 		aux = (*aux).next;
 	}
+	*(*line + i) = '\0';
 }
 
-void	clear_until_last_node(t_list *lst)
+void	clear_nodes(t_list **lst)
 {
 	t_list	*tmp;
 
-	while ((*lst).next)
+	while (*lst)
 	{
-		tmp = (*lst).next;
-		free((*lst).content);
-		free(lst);
-		lst = tmp;
+		tmp = (**lst).next;
+		free((**lst).content);
+		free(*lst);
+		*lst = tmp;
 	}
+	free(*lst);
+	*lst = NULL;
 }
 
 void	extract_remainder(t_list **lst)
 {
+	t_list	*last;
 	char	*content;
 	int		before;
 	int		i;
 	int		len;
-	t_list	*tmp;
 
-	clear_until_last_node(*lst);
+	last = last_node(*lst);
 	len = 0;
-	before = length_until_newline(*lst);
-	while (*((**lst).content + before + len))
+	before = length_until_newline(last);
+	while (*((*last).content + before + len))
 		len++;
+	if (!len)
+	{
+		clear_nodes(lst);
+		return ;
+	}
 	content = malloc(sizeof(char) * (len + 1));
 	if (!content)
 		return ;
 	i = 0;
-	while (*((**lst).content + before) && i < len)
-		*(content + i++) = *((**lst).content + before++);
-	tmp = malloc(sizeof(t_list));
-	if (!tmp)
-		return ;
-	(*tmp).content = content;
-	(*tmp).next = NULL;
-	free(*lst);
-	*lst = tmp;
+	while (*((*last).content + before) && i < len)
+		*(content + i++) = *((*last).content + before++);
+	*(content + i) = '\0';
+	clear_nodes(lst);
+	add_node(lst, content);
 }
 
 char	*get_next_line(int fd)
@@ -108,13 +115,12 @@ char	*get_next_line(int fd)
 	if (!lst)
 		return (NULL);
 	get_line(lst, &line);
-	if (!line)
-		return (NULL);
 	extract_remainder(&lst);
 	return (line);
 }
 
 /*
+
 int	main(int argc, char **argv)
 {
 	int		fd;
@@ -124,10 +130,11 @@ int	main(int argc, char **argv)
 	line = get_next_line(fd);
 	while (line)
 	{
-		printf("%s", line);
+		printf("%s",line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	return (0);
 }
+
 */
