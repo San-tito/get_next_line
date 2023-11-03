@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:26:06 by sguzman           #+#    #+#             */
-/*   Updated: 2023/11/02 20:26:03 by sguzman          ###   ########.fr       */
+/*   Updated: 2023/11/03 22:32:53 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	read_and_create(int fd, t_list **lst)
 	}
 }
 
-void	get_line(t_list *lst, char **line)
+void	get_line_from_list(t_list *lst, char **line)
 {
 	int		len;
 	t_list	*aux;
@@ -109,12 +109,17 @@ char	*get_next_line(int fd)
 	char			*line;
 
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, line, 0) < 0)
+	if (read(fd, line, 0) < 0)
+	{
+		clear_nodes(&lst);
+		return (NULL);
+	}
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	read_and_create(fd, &lst);
 	if (!lst)
 		return (NULL);
-	get_line(lst, &line);
+	get_line_from_list(lst, &line);
 	extract_remainder(&lst);
 	return (line);
 }

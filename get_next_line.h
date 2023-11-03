@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:26:16 by sguzman           #+#    #+#             */
-/*   Updated: 2023/11/02 20:25:32 by sguzman          ###   ########.fr       */
+/*   Updated: 2023/11/02 20:29:29 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_list
 
 char				*get_next_line(int fd);
 void				read_and_create(int fd, t_list **lst);
-void				get_line(t_list *lst, char **line);
+void				get_line_from_list(t_list *lst, char **line);
 void				extract_remainder(t_list **lst);
 int					check_for_newline(t_list *lst);
 t_list				*last_node(t_list *lst);
