@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 16:26:06 by sguzman           #+#    #+#             */
-/*   Updated: 2023/11/08 21:17:19 by sguzman          ###   ########.fr       */
+/*   Created: 2023/11/08 19:07:49 by sguzman           #+#    #+#             */
+/*   Updated: 2023/11/08 21:18:47 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	read_and_create(int fd, t_list **lst)
 {
@@ -86,24 +86,24 @@ void	extract_remainder(t_list **lst)
 
 char	*get_next_line(int fd)
 {
-	static t_list	*lst = NULL;
+	static t_list	*lst[OPEN_MAX];
 	char			*line;
 
 	line = NULL;
 	if (read(fd, line, 0) < 0)
 	{
-		clear_nodes(&lst);
+		clear_nodes(&lst[fd]);
 		return (NULL);
 	}
-	else if (fd < 0 || BUFFER_SIZE <= 0)
+	else if (fd < 0 || fd > OPEN_MAX - 1 || BUFFER_SIZE <= 0)
 		return (NULL);
-	read_and_create(fd, &lst);
-	if (!lst)
+	read_and_create(fd, &lst[fd]);
+	if (!lst[fd])
 		return (NULL);
-	get_line_from_list(&lst, &line);
-	if (!lst)
+	get_line_from_list(&lst[fd], &line);
+	if (!lst[fd])
 		return (NULL);
-	extract_remainder(&lst);
+	extract_remainder(&lst[fd]);
 	return (line);
 }
 

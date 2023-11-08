@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 16:26:23 by sguzman           #+#    #+#             */
-/*   Updated: 2023/11/08 18:55:30 by sguzman          ###   ########.fr       */
+/*   Created: 2023/11/08 19:08:06 by sguzman           #+#    #+#             */
+/*   Updated: 2023/11/08 19:09:53 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	check_for_newline(t_list *lst)
 {
