@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:26:06 by sguzman           #+#    #+#             */
-/*   Updated: 2023/11/03 22:32:53 by sguzman          ###   ########.fr       */
+/*   Updated: 2023/11/08 18:19:03 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,17 @@ void	read_and_create(int fd, t_list **lst)
 	{
 		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (!buffer)
-			return ;
+			return (clear_nodes(lst));
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (!bytes_read)
-		{
-			free(buffer);
-			return ;
-		}
+			return (free(buffer));
 		buffer[bytes_read] = '\0';
-		add_node(lst, buffer);
+		if (!add_node(lst, buffer))
+			return ;
 	}
 }
 
-void	get_line_from_list(t_list *lst, char **line)
+void	get_line_from_list(t_list **lst, char **line)
 {
 	int		len;
 	t_list	*aux;
@@ -42,13 +40,16 @@ void	get_line_from_list(t_list *lst, char **line)
 
 	i = 0;
 	j = 0;
-	aux = lst;
-	len = length_until_newline(lst);
+	aux = *lst;
+	len = length_until_newline(*lst);
 	if (!len)
 		return ;
 	*line = malloc(sizeof(char) * (len + 1));
 	if (!*line)
-		return ;
+	{
+		line = NULL;
+		return (clear_nodes(lst));
+	}
 	while (aux)
 	{
 		while (*((*aux).content + j) && i < len)
@@ -59,21 +60,6 @@ void	get_line_from_list(t_list *lst, char **line)
 	*(*line + i) = '\0';
 }
 
-void	clear_nodes(t_list **lst)
-{
-	t_list	*tmp;
-
-	while (*lst)
-	{
-		tmp = (**lst).next;
-		free((**lst).content);
-		free(*lst);
-		*lst = tmp;
-	}
-	free(*lst);
-	*lst = NULL;
-}
-
 void	extract_remainder(t_list **lst)
 {
 	t_list	*last;
@@ -82,25 +68,25 @@ void	extract_remainder(t_list **lst)
 	int		i;
 	int		len;
 
+	if (!*lst)
+		return ;
 	last = last_node(*lst);
 	len = 0;
 	before = length_until_newline(last);
 	while (*((*last).content + before + len))
 		len++;
 	if (!len)
-	{
-		clear_nodes(lst);
-		return ;
-	}
+		return (clear_nodes(lst));
 	content = malloc(sizeof(char) * (len + 1));
 	if (!content)
-		return ;
+		return (clear_nodes(lst));
 	i = 0;
 	while (*((*last).content + before) && i < len)
 		*(content + i++) = *((*last).content + before++);
 	*(content + i) = '\0';
 	clear_nodes(lst);
-	add_node(lst, content);
+	if (!add_node(lst, content))
+		return ;
 }
 
 char	*get_next_line(int fd)
@@ -114,12 +100,12 @@ char	*get_next_line(int fd)
 		clear_nodes(&lst);
 		return (NULL);
 	}
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	else if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	read_and_create(fd, &lst);
 	if (!lst)
 		return (NULL);
-	get_line_from_list(lst, &line);
+	get_line_from_list(&lst, &line);
 	extract_remainder(&lst);
 	return (line);
 }

@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:26:23 by sguzman           #+#    #+#             */
-/*   Updated: 2023/11/03 20:39:26 by sguzman          ###   ########.fr       */
+/*   Updated: 2023/11/08 18:19:30 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,12 @@ t_list	*add_node(t_list **lst, char *content)
 
 	newlst = malloc(sizeof(t_list));
 	if (!newlst)
+	{
+		free(content);
+		content = NULL;
+		clear_nodes(lst);
 		return (NULL);
+	}
 	(*newlst).content = content;
 	(*newlst).next = NULL;
 	if (!*lst)
@@ -83,4 +88,19 @@ int	length_until_newline(t_list *lst)
 		aux = (*aux).next;
 	}
 	return (len);
+}
+
+void	clear_nodes(t_list **lst)
+{
+	t_list	*tmp;
+
+	while (*lst)
+	{
+		tmp = (**lst).next;
+		free((**lst).content);
+		free(*lst);
+		*lst = tmp;
+	}
+	free(*lst);
+	*lst = NULL;
 }
