@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 19:07:49 by sguzman           #+#    #+#             */
-/*   Updated: 2023/11/08 21:18:47 by sguzman          ###   ########.fr       */
+/*   Updated: 2023/11/09 15:33:54 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,24 +86,24 @@ void	extract_remainder(t_list **lst)
 
 char	*get_next_line(int fd)
 {
-	static t_list	*lst[OPEN_MAX];
+	static t_list	*lst[OPEN_MAX + 1];
 	char			*line;
 
 	line = NULL;
 	if (read(fd, line, 0) < 0)
 	{
-		clear_nodes(&lst[fd]);
+		clear_nodes(lst + fd);
 		return (NULL);
 	}
-	else if (fd < 0 || fd > OPEN_MAX - 1 || BUFFER_SIZE <= 0)
+	else if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-	read_and_create(fd, &lst[fd]);
+	read_and_create(fd, lst + fd);
 	if (!lst[fd])
 		return (NULL);
-	get_line_from_list(&lst[fd], &line);
+	get_line_from_list(lst + fd, &line);
 	if (!lst[fd])
 		return (NULL);
-	extract_remainder(&lst[fd]);
+	extract_remainder(lst + fd);
 	return (line);
 }
 
