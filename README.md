@@ -1,4 +1,5 @@
 # Get Next Line
+![Build](https://github.com/San-tito/get_next_line/actions/workflows/c.yml/badge.svg)
 The Get Next Line project aims to create a function that reads a line from a file or file descriptor (fd) and returns it.
 # Usage
 
