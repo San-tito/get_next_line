@@ -107,8 +107,6 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*
-
 int	main(int argc, char **argv)
 {
 	int		fd;
@@ -126,4 +124,3 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-*/
