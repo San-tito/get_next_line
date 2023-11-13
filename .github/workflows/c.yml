@@ -14,4 +14,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: compilation 
-      run: sudo apt install gcc && cc -Wall -Werror -Wextra -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c -o gnl
+      run: cc -Wall -Werror -Wextra -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c -o gnl
