@@ -35,14 +35,20 @@
 
 ## 📍 Overview
 
-This project is about programming a function that returns a line
-read from a file descriptor.
+The `get_next_line` project is a programming exercise that challenges you to implement a function capable of reading a line from a file descriptor. The primary goal is to develop a function that allows reading from a file descriptor efficiently, providing a line-by-line extraction from the given input. This project introduces the concept of static variables and encourages a deeper understanding of memory management and file I/O in the C programming language.
 
 ---
 
 ## 📦 Features
 
-HTTPStatus Exception: 429
+- **Prototype:** `char *get_next_line(int fd);`
+- **Parameters:**
+  - 📁 `fd`: The file descriptor to read from.
+- **Return value:**
+  - 📜 Read line: Returns the next line from the specified file descriptor.
+  - `🚫 NULL`: Indicates there is nothing else to read or an error occurred.
+- **External functions:** `📖 read`, `🛠️ malloc`, `🗑️ free`
+- **Description:** Writes a function that reads from a file descriptor (`fd`) and returns the next line of text.
 
 ---
 
@@ -65,16 +71,23 @@ HTTPStatus Exception: 429
 
 ## ⚙️ Modules
 
-<details closed><summary>Root</summary>
+<details closed><summary>Mandatory</summary>
 
 | File                                                                                                           | Summary                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ---                                                                                                            | ---                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| [get_next_line_utils_bonus.c](https://github.com/San-tito/get_next_line/blob/main/get_next_line_utils_bonus.c) | HTTPStatus Exception: 429                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| [get_next_line_utils.c](https://github.com/San-tito/get_next_line/blob/main/get_next_line_utils.c)             | The code in `get_next_line_utils.c` is part of a larger project directory called `get_next_line`. This specific file contains utility functions that are used in the implementation of the `get_next_line` function.The `check_for_newline` function checks if there is a newline character within the content of a linked list node. If there is, it returns 1, indicating that a line has been found. Otherwise, it returns 0.The `last_node` function returns a pointer to the last node in a linked list.The `add_node` function adds a new node to the end of a linked list, with the provided content.The `length_until_newline` function calculates the length of the content in a linked list until the first occurrence of a newline character.The `clear_nodes` function frees the memory allocated for the nodes in a linked list, including their content. |
-| [get_next_line_bonus.h](https://github.com/San-tito/get_next_line/blob/main/get_next_line_bonus.h)             | The code provided is the header file get_next_line_bonus.h for a program that reads from a file and returns a line at a time. It includes necessary libraries and defines a struct and function prototypes. The struct t_list is used to store the content of each line and a pointer to the next line. The function prototypes define the operations to read and create lines, get a line from the list, extract any remaining content, check for a newline character, find the last node, add a new node, get the length until a newline, and clear the nodes.                                                                                                                                                                                                                                                                                                       |
-| [get_next_line_bonus.c](https://github.com/San-tito/get_next_line/blob/main/get_next_line_bonus.c)             | HTTPStatus Exception: 429                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| [get_next_line.h](https://github.com/San-tito/get_next_line/blob/main/get_next_line.h)                         | The code provided is the header file get_next_line.h for a function called get_next_line. It includes necessary headers and defines a struct, t_list, which represents a linked list node. The function get_next_line reads from a file descriptor and returns the next line of text from it. Other functions in the header file are used to manipulate and manage the linked list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| [get_next_line.c](https://github.com/San-tito/get_next_line/blob/main/get_next_line.c)                         | HTTPStatus Exception: 429                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| [get_next_line.c](https://github.com/San-tito/get_next_line/blob/main/get_next_line.c)                         | Implements the core functionality of `get_next_line`. Reads a line from the given file descriptor and manages the linked list operations to handle line reading. It uses utility functions to efficiently handle dynamic memory allocation, buffer reading, and linked list manipulation. The function provides an interface for retrieving the next line from a file.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| [get_next_line_utils.c](https://github.com/San-tito/get_next_line/blob/main/get_next_line_utils.c)             | Contains utility functions used in the implementation of `get_next_line`. The key functionalities include checking for a newline character in a linked list node, finding the last node in a linked list, adding a new node to the end of a linked list, calculating the length of content in a linked list until a newline character, and clearing the memory allocated for nodes in a linked list. These utilities contribute to the overall functionality of reading lines from a file.                                                                                                                                                                                                                                                                                                      |
+| [get_next_line.h](https://github.com/San-tito/get_next_line/blob/main/get_next_line.h)                         | Header file defining the struct `t_list` and function prototypes for `get_next_line` and associated utilities. The struct `t_list` represents a linked list node containing the content of a line and a pointer to the next node. The function prototypes include those for reading lines, managing linked lists, and handling memory. This header provides the necessary interface for using the `get_next_line` function and associated utilities.                                                                                                                                                                                                                                                                                                              |
+
+</details>
+
+<details closed><summary>Bonus</summary>
+    
+| File                                                                                                           | Summary                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ---                                                                                                            | ---                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| [get_next_line_bonus.c](https://github.com/San-tito/get_next_line/blob/main/get_next_line_bonus.c)             | The `get_next_line_bonus.c` file extends the core functionality of `get_next_line` by introducing features that enable the simultaneous management of multiple file descriptors (`fd`). The primary change occurs in the `get_next_line` function, where it now maintains a static array of linked lists (`lst`) corresponding to different file descriptors. This allows the system to handle and track the state of each file descriptor independently, ensuring seamless reading of lines from multiple sources concurrently. The file orchestrates the flow and integration of these features, coordinating the initialization, reading, and cleanup processes for each file descriptor.                                                                                                                                                                                                                                                           |
+| [get_next_line_utils_bonus.c](https://github.com/San-tito/get_next_line/blob/main/get_next_line_utils_bonus.c) | Contains utility functions unchanged from the mandatory implementation. These functions facilitate the core operations related to linked lists and memory management and are reused in the bonus implementation to maintain consistency and code modularity. They contribute to the effective management of linked lists within the extended `get_next_line` system, supporting operations like checking for newline characters, obtaining the last node, adding nodes, calculating length until newline, and clearing nodes.                                                                                                                                                                                                                                                                                                                   |
+| [get_next_line_bonus.h](https://github.com/San-tito/get_next_line/blob/main/get_next_line_bonus.h)             | Header file for the bonus functionality, defining additional structs and function prototypes. The changes in the header are minimal and involve introducing the necessary structures and functions to support the concurrent management of multiple file descriptors. It extends the structures and functions defined in the mandatory header (`get_next_line.h`) to accommodate the new requirements. The header file ensures that the core functionality remains intact while providing an interface for the bonus features to seamlessly integrate with the existing system.                                                                                                                                                                                                                                 |
 
 </details>
 
@@ -86,11 +99,13 @@ HTTPStatus Exception: 429
 
 Please ensure you have the following dependencies installed on your system:
 
-`- ℹ️ Dependency 1`
+- ℹ️ **C Compiler**: You will need a C compiler to build and run the project.
 
-`- ℹ️ Dependency 2`
-
-`- ℹ️ ...`
+    - Example for GCC (GNU Compiler Collection):
+      ```sh
+      sudo apt-get install gcc  # Ubuntu
+      sudo yum install gcc      # CentOS
+      ```
 
 ### 🔧 Installation
 
@@ -117,13 +132,13 @@ gcc -Wall -Werror -Wextra -D BUFFER_SIZE=42 get_next_line*.c -o gnl
 
 ### 🧪 Tests
 ```sh
-/* No common unit test framework in C */
+/* Not implemented */
 ```
 
 ---
 
 
-## 🛣 Project Roadmap
+## 🛣 Roadmap
 
 > - [X] `ℹ️  Task 1: Implement handling of multiple file descriptors at the same time`
 > - [ ] `ℹ️  Task 2: Implement tests`
@@ -145,7 +160,7 @@ Contributions are welcome! Here are several ways you can contribute:
 ## 📄 License
 
 
-This project is protected under the [LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
+This project is protected under the [UNLICENSE](https://choosealicense.com/licenses/unlicense) License. For more details, refer to the [LICENSE](LICENSE) file.
 
 ---
 
