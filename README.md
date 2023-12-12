@@ -1,6 +1,6 @@
 <div align="center">
 <h1 align="center">
-<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/get_next_linem.png" width="150" />
+<img src="https://raw.githubusercontent.com/byaliego/42-project-badges/main/badges/get_next_linem.png" width="150" />
 <br>GET_NEXT_LINE</h1>
 <h3>◦ Reading a line from fd is way too tedious</h3>
 
