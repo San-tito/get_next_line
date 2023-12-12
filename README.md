@@ -1,19 +1,16 @@
 <div align="center">
 <h1 align="center">
-<img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" width="100" />
+<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/get_next_linem.png" width="150" />
 <br>GET_NEXT_LINE</h1>
-<h3>◦ HTTPStatus Exception: 429</h3>
-<h3>◦ Developed with the software and tools below.</h3>
+<h3>◦ Reading a line from fd is way too tedious</h3>
 
 <p align="center">
-<img src="https://img.shields.io/badge/YAML-CB171E.svg?style=flat-square&logo=YAML&logoColor=white" alt="YAML" />
-<img src="https://img.shields.io/badge/C-A8B9CC.svg?style=flat-square&logo=C&logoColor=black" alt="C" />
-<img src="https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=flat-square&logo=GitHub-Actions&logoColor=white" alt="GitHub%20Actions" />
+<img src="https://img.shields.io/badge/Barcelona-100000?style=flat-square&logo=42&logoColor=white&labelColor=000000&color=000000" alt="42 Barcelona" />
+<img src="https://img.shields.io/github/actions/workflow/status/San-tito/get_next_line/c.yml?style=flat-square" alt="GitHub%20Actions" />
 </p>
-<img src="https://img.shields.io/github/license/San-tito/get_next_line?style=flat-square&color=5D6D7E" alt="GitHub license" />
-<img src="https://img.shields.io/github/last-commit/San-tito/get_next_line?style=flat-square&color=5D6D7E" alt="git-last-commit" />
-<img src="https://img.shields.io/github/commit-activity/m/San-tito/get_next_line?style=flat-square&color=5D6D7E" alt="GitHub commit activity" />
-<img src="https://img.shields.io/github/languages/top/San-tito/get_next_line?style=flat-square&color=5D6D7E" alt="GitHub top language" />
+<img src="https://img.shields.io/github/license/San-tito/get_next_line?style=flat-square" alt="GitHub license" />
+<img src="https://img.shields.io/github/languages/code-size/San-tito/get_next_line?style=flat-square" alt="GitHub code size" />
+<img src="https://img.shields.io/github/languages/top/San-tito/get_next_line?style=flat-square" alt="GitHub top language" />
 </div>
 
 ---
@@ -38,7 +35,8 @@
 
 ## 📍 Overview
 
-HTTPStatus Exception: 429
+This project is about programming a function that returns a line
+read from a file descriptor.
 
 ---
 
@@ -119,13 +117,13 @@ cd get_next_line
 
 3. Install the dependencies:
 ```sh
-gcc -o myapp main.c
+gcc -Wall -Werror -Wextra -D BUFFER_SIZE=42 get_next_line*.c -o gnl
 ```
 
 ### 🤖 Running get_next_line
 
 ```sh
-./myapp
+./gnl file.txt
 ```
 
 ### 🧪 Tests
@@ -138,8 +136,8 @@ gcc -o myapp main.c
 
 ## 🛣 Project Roadmap
 
-> - [X] `ℹ️  Task 1: Implement X`
-> - [ ] `ℹ️  Task 2: Implement Y`
+> - [X] `ℹ️  Task 1: Implement  manage multiple file descriptors at the same time.`
+> - [ ] `ℹ️  Task 2: Implement tests`
 > - [ ] `ℹ️ ...`
 
 
