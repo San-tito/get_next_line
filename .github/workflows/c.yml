@@ -14,4 +14,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: compilation 
-      run: cc -Wall -Werror -Wextra -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c -o gnl
+      run: gcc -Wall -Werror -Wextra -D BUFFER_SIZE=42 -c get_next_line.c -o et_next_line.o
