@@ -14,9 +14,8 @@ jobs:
     - name: compilation 
       run: gcc -Wall -Werror -Wextra -D BUFFER_SIZE=42 -c get_next_line.c -o get_next_line.o
 
-  norminette_v3_job:
+  norminette:
     runs-on: ubuntu-latest
-    name: norminette v3
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: alexandregv/norminette-action@v3
