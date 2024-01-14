@@ -6,7 +6,7 @@
 /*   By: sguzman <sguzman@student.42barcelo>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:26:06 by sguzman           #+#    #+#             */
-/*   Updated: 2023/11/09 15:30:39 by sguzman          ###   ########.fr       */
+/*   Updated: 2024/01/14 03:04:00 by sguzman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,3 @@ char	*get_next_line(int fd)
 	extract_remainder(&lst);
 	return (line);
 }
-
